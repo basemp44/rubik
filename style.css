@@ -3,6 +3,7 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+	background-color: rgb(212, 207, 207);
 }
 
 body {
@@ -14,16 +15,17 @@ body {
 
 :root {
 	--cube-length: 300px;
-	--cube-tx-pos: calc(var(--cube-length)/2);
-	--cube-tx-neg: calc(-1 * var(--cube-tx-pos));
+	--cube-layers: 4;
+	--cube-step: calc(var(--cube-length)/(var(--cube-layers)-1));
+	--cube-tx-0: 150px;
+	--cube-tx-1: 50px;
+	--cube-tx-2: -50px;
+	--cube-tx-3: -150px;
 }
 
 .rubik {
-	width: 300px;
-	height: 300px;
-}
-
-.rubik {
+	width: var(--cube-length);
+	height: var(--cube-length);
 	position: relative;
 	transform-style: preserve-3d;
 	transform: rotate3d(1,1,1,60deg);
@@ -33,18 +35,38 @@ body {
 	position: absolute;
 	top: 0px;
 	left:0px;
-	display: block;
 	width: 100%;
 	height: 100%;
 }
 
-.layerX.layer0 { transform: translate3d(0,0,var(--cube-tx-pos)) rotate3d(0,0,1,90deg) }
-.layerX.layer1 { transform: translate3d(0,0,0)                  rotate3d(0,0,1,90deg) }
-.layerX.layer2 { transform: translate3d(0,0,var(--cube-tx-neg)) rotate3d(0,0,1,90deg) }
-.layerY.layer0 { transform: translate3d(0,var(--cube-tx-pos),0) rotate3d(1,0,0,-90deg) }
-.layerY.layer1 { transform: translate3d(0,0,0)                  rotate3d(1,0,0,-90deg) }
-.layerY.layer2 { transform: translate3d(0,var(--cube-tx-neg),0) rotate3d(1,0,0,-90deg) }
-.layerZ.layer0 { transform: translate3d(var(--cube-tx-pos),0,0) rotate3d(0,1,0,90deg) }
-.layerZ.layer1 { transform: translate3d(0,0,0)                  rotate3d(0,1,0,90deg) }
-.layerZ.layer2 { transform: translate3d(var(--cube-tx-neg),0,0) rotate3d(0,1,0,90deg) }
+.layerX.layer0 { transform: translateZ(var(--cube-tx-0)) rotateZ(-0.25turn) }
+.layerX.layer1 { transform: translateZ(var(--cube-tx-1)) rotateZ(-0.25turn) }
+.layerX.layer2 { transform: translateZ(var(--cube-tx-2)) rotateZ(-0.25turn) }
+.layerX.layer3 { transform: translateZ(var(--cube-tx-3)) rotateZ(-0.25turn) scaleX(-1)}
+.layerY.layer0 { transform: translateY(var(--cube-tx-0)) rotateX(-0.25turn) rotateZ(0.75turn) }
+.layerY.layer1 { transform: translateY(var(--cube-tx-1)) rotateX(-0.25turn) }
+.layerY.layer2 { transform: translateY(var(--cube-tx-2)) rotateX(-0.25turn) }
+.layerY.layer3 { transform: translateY(var(--cube-tx-3)) rotateX(0.25turn) rotateZ(0.75turn) }
+.layerZ.layer0 { transform: translateX(var(--cube-tx-0)) rotateY(-0.25turn) scaleX(-1)}
+.layerZ.layer1 { transform: translateX(var(--cube-tx-1)) rotateY(-0.25turn) }
+.layerZ.layer2 { transform: translateX(var(--cube-tx-2)) rotateY(-0.25turn) }
+.layerZ.layer3 { transform: translateX(var(--cube-tx-3)) rotateY(-0.25turn) }
 
+.layer {
+	display: grid;
+	grid-template-rows:    repeat(3, 1fr);
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.white  { background-color: white; }
+.yellow { background-color: yellow; }
+.orange { background-color: orange; }
+.green  { background-color: green; }
+.red    { background-color: red; }
+.blue   { background-color: blue; }
+.black  { background-color: black; }
+
+.tile {
+	border: 5px solid black;
+	border-radius: 5px;
+}
