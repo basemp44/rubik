@@ -2,41 +2,69 @@ function getElementsByClass(str) {
 	return Array.from(document.getElementsByClassName(str));
 }
 
-function populateBlack() {
-	["layer1", "layer2"].forEach(cl =>
-		getElementsByClass(cl).forEach(layer => {
-			for (let i = 0; i < 9; i++) {
-				let tile = document.createElement("div")
-				tile.classList = "tile black";
-				layer.appendChild(tile);
-			}
-		})
-	);
+function create(tag, classList, children=null) {
+	let elem = document.createElement(tag);
+	elem.classList = classList;
+	if (children) {
+		children.forEach(child => elem.appendChild(child));
+	}
+
+	return elem;
 }
 
-function populateU() { populate("layerZ layer3", "white") }
-function populateD() { populate("layerZ layer0", "yellow") }
-function populateL() { populate("layerX layer3", "blue") }
-function populateF() { populate("layerX layer0", "green") }
-function populateR() { populate("layerY layer3", "red") }
-function populateB() { populate("layerY layer0", "orange") }
+function populateLayerX(colors) {
+	getElementsByClass("layerX").forEach(layer => {
+		let xU = createXU(colors['U']);
+		let xD = createXD(colors['D']);
+		let xL = createXL(colors['L']);
+		let xR = createXR(colors['R']);
+		let xF = createXF(colors['F']);
+		let xB = createXB(colors['B']);
 
+		[xU,xD,xL,xR,xF,xB].forEach(e => layer.appendChild(e))
+	})
 
-function populate(strClass, color) {
-	let layer = getElementsByClass(strClass)[0];
-	for (let i = 0; i < 9; i++) {
-		let tile = document.createElement("div")
-		tile.classList = `tile ${color}`;
-		layer.appendChild(tile);
+	function createXU(color) {
+		let children = Array.from({length: 3}, () => create("div", `tile ${color}`));
+		return create("div", "tilegroup tilegroup-1-3 x-up", children);
 	}
+
+	function createXD(color) {
+		let children = Array.from({length: 3}, () => create("div", `tile ${color}`));
+		return create("div", "tilegroup tilegroup-1-3 x-down", children);
+	}
+
+	function createXL(color) {
+		let children = Array.from({length: 9}, () => create("div", `tile ${color}`));
+		return create("div", "tilegroup tilegroup-3-3 x-left", children);
+	}
+
+	function createXR(color) {
+		let children = Array.from({length: 9}, () => create("div", `tile ${color}`));
+		return create("div", "tilegroup tilegroup-3-3 x-right", children);
+	}
+
+	function createXF(color) {
+		let children = Array.from({length: 3}, () => create("div", `tile ${color}`));
+		return create("div", "tilegroup tilegroup-3-1 x-front", children);
+	}
+
+	function createXB(color) {
+		let children = Array.from({length: 3}, () => create("div", `tile ${color}`));
+		return create("div", "tilegroup tilegroup-3-1 x-back", children);
+	}
+
 }
 
 window.onload = () => {
-	populateU();
-	populateD();
-	populateL();
-	populateF();
-	populateR();
-	populateB();
-	populateBlack();
+	let colors = {
+		U: "white",
+		D: "yellow",
+		L: "orange",
+		R: "red",
+		F: "green",
+		B: "blue"
+	}
+
+	populateLayerX(colors);
 }

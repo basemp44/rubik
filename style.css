@@ -12,26 +12,32 @@ body {
 	justify-content: center;
 }
 
-
 :root {
 	--cube-length: 300px;
-	--cube-layers: 4;
-	--cube-step: calc(var(--cube-length)/(var(--cube-layers)-1));
-	--cube-tx-0: 150px;
-	--cube-tx-1: 50px;
-	--cube-tx-2: -50px;
-	--cube-tx-3: -150px;
+	--cube-tx-0: -100px;
+	--cube-tx-1: 0px;
+	--cube-tx-2: 100px;
+}
+
+.rubik {
+	position: relative;
+	transform-style: preserve-3d;
 }
 
 .rubik {
 	width: var(--cube-length);
 	height: var(--cube-length);
-	position: relative;
-	transform-style: preserve-3d;
-	transform: rotate3d(1,1,1,60deg);
+	transform: rotate3d(1,1,1,-45deg);
 }
 
-.layer {
+.layer-in {
+	width: 100%;
+	height: 100%;
+}
+
+.layer,
+.tilegroup {
+	transform-style: preserve-3d;
 	position: absolute;
 	top: 0px;
 	left:0px;
@@ -39,23 +45,15 @@ body {
 	height: 100%;
 }
 
-.layerX.layer0 { transform: translateZ(var(--cube-tx-0)) rotateZ(-0.25turn) }
-.layerX.layer1 { transform: translateZ(var(--cube-tx-1)) rotateZ(-0.25turn) }
-.layerX.layer2 { transform: translateZ(var(--cube-tx-2)) rotateZ(-0.25turn) }
-.layerX.layer3 { transform: translateZ(var(--cube-tx-3)) rotateZ(-0.25turn) scaleX(-1)}
-.layerY.layer0 { transform: translateY(var(--cube-tx-0)) rotateX(-0.25turn) rotateZ(0.75turn) }
-.layerY.layer1 { transform: translateY(var(--cube-tx-1)) rotateX(-0.25turn) }
-.layerY.layer2 { transform: translateY(var(--cube-tx-2)) rotateX(-0.25turn) }
-.layerY.layer3 { transform: translateY(var(--cube-tx-3)) rotateX(0.25turn) rotateZ(0.75turn) }
-.layerZ.layer0 { transform: translateX(var(--cube-tx-0)) rotateY(-0.25turn) scaleX(-1)}
-.layerZ.layer1 { transform: translateX(var(--cube-tx-1)) rotateY(-0.25turn) }
-.layerZ.layer2 { transform: translateX(var(--cube-tx-2)) rotateY(-0.25turn) }
-.layerZ.layer3 { transform: translateX(var(--cube-tx-3)) rotateY(-0.25turn) }
-
 .layer {
 	display: grid;
 	grid-template-rows:    repeat(3, 1fr);
 	grid-template-columns: repeat(3, 1fr);
+	transition: transform 1s;
+}
+
+.layer.hiden {
+	display: none;
 }
 
 .white  { background-color: white; }
@@ -70,3 +68,53 @@ body {
 	border: 5px solid black;
 	border-radius: 5px;
 }
+
+.tilegroup-1-3,
+.tilegroup-3-1,
+.tilegroup-3-3 {
+	display: grid;
+}
+
+.tilegroup-1-3,
+.tilegroup-3-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.tilegroup-3-1,
+.tilegroup-3-3 {
+	grid-template-rows: repeat(3, 1fr);
+}
+
+.layerX.layer0 {background-color: rgba(90,90,90,0.3); }
+
+
+/*Rotation X */
+
+.layerX.layer0 { transform: translateX(var(--cube-tx-0)) rotateY(.25turn) }
+.layerX.layer1 { transform: translateX(var(--cube-tx-1)) rotateY(.25turn) }
+.layerX.layer2 { transform: translateX(var(--cube-tx-2)) rotateY(.25turn) }
+
+.layerX.layer0.rotW { transform: rotateX(-.25turn) translateX(var(--cube-tx-0)) rotateY(.25turn) }
+.layerX.layer1.rotW { transform: rotateX(-.25turn) translateX(var(--cube-tx-1)) rotateY(.25turn) }
+.layerX.layer2.rotW { transform: rotateX(-.25turn) translateX(var(--cube-tx-2)) rotateY(.25turn) }
+
+.layerX.layer0.rotCw { transform: rotateX(.25turn) translateX(var(--cube-tx-0)) rotateY(.25turn) }
+.layerX.layer1.rotCw { transform: rotateX(.25turn) translateX(var(--cube-tx-1)) rotateY(.25turn) }
+.layerX.layer2.rotCw { transform: rotateX(.25turn) translateX(var(--cube-tx-2)) rotateY(.25turn) }
+
+.x-left   { transform: translateZ(-50px) rotateY(.5turn) }
+.x-right  { transform: translateZ(50px)  }
+.x-front  { transform: translateX(-150px)  rotateY(-.25turn) scaleX(calc(1/3)) }
+.x-back   { transform: translateX(150px)   rotateY( .25turn) rotateX(.5turn) scaleX(calc(1/3)) }
+.x-up     { transform: translateY(-150px)  rotateX(-.25turn) rotateY(.5turn) scaleY(calc(1/3)) }
+.x-down   { transform: translateY(150px)   rotateX( .25turn) scaleY(calc(1/3)) }
+
+/*Rotation Y*/
+.layerY.layer0 { transform: translateY(var(--cube-tx-0)) rotateX(.25turn)}
+.layerY.layer1 { transform: translateY(var(--cube-tx-1)) rotateX(.25turn)}
+.layerY.layer2 { transform: translateY(var(--cube-tx-2)) rotateX(.25turn)}
+
+/*
+.layerZ.layer0 { transform: translateZ(var(--cube-tx-0)) }
+.layerZ.layer1 { transform: translateZ(var(--cube-tx-1)) }
+.layerZ.layer2 { transform: translateZ(var(--cube-tx-2)) }*/
