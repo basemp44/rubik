@@ -94,25 +94,40 @@ body {
 .layerX.layer1 { transform: translateX(var(--cube-tx-1)) rotateY(.25turn) }
 .layerX.layer2 { transform: translateX(var(--cube-tx-2)) rotateY(.25turn) }
 
-.layerX.layer0.rotW { transform: rotateX(-.25turn) translateX(var(--cube-tx-0)) rotateY(.25turn) }
-.layerX.layer1.rotW { transform: rotateX(-.25turn) translateX(var(--cube-tx-1)) rotateY(.25turn) }
-.layerX.layer2.rotW { transform: rotateX(-.25turn) translateX(var(--cube-tx-2)) rotateY(.25turn) }
+.layerX.layer0.rotCw { transform: rotateX(-.25turn) translateX(var(--cube-tx-0)) rotateY(.25turn) }
+.layerX.layer1.rotCw { transform: rotateX(-.25turn) translateX(var(--cube-tx-1)) rotateY(.25turn) }
+.layerX.layer2.rotCw { transform: rotateX(-.25turn) translateX(var(--cube-tx-2)) rotateY(.25turn) }
 
-.layerX.layer0.rotCw { transform: rotateX(.25turn) translateX(var(--cube-tx-0)) rotateY(.25turn) }
-.layerX.layer1.rotCw { transform: rotateX(.25turn) translateX(var(--cube-tx-1)) rotateY(.25turn) }
-.layerX.layer2.rotCw { transform: rotateX(.25turn) translateX(var(--cube-tx-2)) rotateY(.25turn) }
+.layerX.layer0.rotW { transform: rotateX(.25turn) translateX(var(--cube-tx-0)) rotateY(.25turn) }
+.layerX.layer1.rotW { transform: rotateX(.25turn) translateX(var(--cube-tx-1)) rotateY(.25turn) }
+.layerX.layer2.rotW { transform: rotateX(.25turn) translateX(var(--cube-tx-2)) rotateY(.25turn) }
 
 .x-left   { transform: translateZ(-50px) rotateY(.5turn) }
-.x-right  { transform: translateZ(50px)  }
-.x-front  { transform: translateX(-150px)  rotateY(-.25turn) scaleX(calc(1/3)) }
-.x-back   { transform: translateX(150px)   rotateY( .25turn) rotateX(.5turn) scaleX(calc(1/3)) }
-.x-up     { transform: translateY(-150px)  rotateX(-.25turn) rotateY(.5turn) scaleY(calc(1/3)) }
-.x-down   { transform: translateY(150px)   rotateX( .25turn) scaleY(calc(1/3)) }
+.x-right  { transform: translateZ(50px) }
+.x-front  { transform: translateX(-150px) rotateY(-.25turn) scaleX(calc(1/3)) }
+.x-back   { transform: translateX(150px)  rotateY( .25turn) rotateX(.5turn) scaleX(calc(1/3)) }
+.x-up     { transform: translateY(-150px) rotateX(-.25turn) rotateY(.5turn) scaleY(calc(1/3)) }
+.x-down   { transform: translateY(150px)  rotateX( .25turn) scaleY(calc(1/3)) }
 
 /*Rotation Y*/
-.layerY.layer0 { transform: translateY(var(--cube-tx-0)) rotateX(.25turn)}
-.layerY.layer1 { transform: translateY(var(--cube-tx-1)) rotateX(.25turn)}
-.layerY.layer2 { transform: translateY(var(--cube-tx-2)) rotateX(.25turn)}
+.layerY.layer0 { transform: translateY(var(--cube-tx-0)) rotateX(.25turn) }
+.layerY.layer1 { transform: translateY(var(--cube-tx-1)) rotateX(.25turn) }
+.layerY.layer2 { transform: translateY(var(--cube-tx-2)) rotateX(.25turn) }
+
+.layerY.layer0.rotW { transform: rotateY(-.25turn) translateY(var(--cube-tx-0)) rotateX(.25turn) }
+.layerY.layer1.rotW { transform: rotateY(-.25turn) translateY(var(--cube-tx-1)) rotateX(.25turn) }
+.layerY.layer2.rotW { transform: rotateY(-.25turn) translateY(var(--cube-tx-2)) rotateX(.25turn) }
+
+.layerY.layer0.rotCw { transform: rotateY(.25turn) translateY(var(--cube-tx-0)) rotateX(.25turn) }
+.layerY.layer1.rotCw { transform: rotateY(.25turn) translateY(var(--cube-tx-1)) rotateX(.25turn) }
+.layerY.layer2.rotCw { transform: rotateY(.25turn) translateY(var(--cube-tx-2)) rotateX(.25turn) }
+
+.y-up    { transform: translateZ(50px)  }
+.y-down  { transform: translateZ(-50px) rotateX(.5turn) }
+.y-left  { transform: translateX(-150px) rotateY(-.25turn) scaleX(calc(1/3)) }
+.y-right { transform: translateX(150px)  rotateY( .25turn) rotateX(.5turn) scaleX(calc(1/3)) }
+.y-front { transform: translateY(150px)  rotateX( .25turn) scaleY(calc(1/3)) }
+.y-back  { transform: translateY(-150px) rotateX(-.25turn) rotateZ(.5turn) scaleY(calc(1/3)) }
 
 /*
 .layerZ.layer0 { transform: translateZ(var(--cube-tx-0)) }
