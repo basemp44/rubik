@@ -3,19 +3,19 @@ class Rubik {
 		this.pieces = Array(3).fill(Array(3).fill(Array(3).fill(new Piece(colors))));
 	}
 
-	rotateFB(xx, clockwise) {
+	rotateFB(xx, wise) {
 		let condition = (x,y,z) => xx == x;
-		let change    = (x,y,z) => clockwise ? 
-			this.pieces[x][2-z][y].rotateFB(clockwise) :
-			this.pieces[x][z][2-y].roteteFB(clockwise);
+		let change    = (x,y,z) => wise ? 
+			this.pieces[x][2-z][y].rotateFB(wise) :
+			this.pieces[x][z][2-y].roteteFB(wise);
 		this.rotate(condition, change);
 	}
 
-	rotateLR(yy, clockwise) {
+	rotateLR(yy, wise) {
 
 	}
 
-	rotateUD(zz, clockwise) {
+	rotateUD(zz, wise) {
 
 	}
 
