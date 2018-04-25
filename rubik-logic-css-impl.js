@@ -37,7 +37,7 @@ function removeOldRotClasses(axis, pos) {
 function getLayer(axis, pos) {
 	return document
 		.getElementById("rubik")
-		.getElementsByClassName("layerX layer0")[0];
+		.getElementsByClassName(`layer${axis} layer${pos}`)[0];
 }
 
 function hideAllAxis() {
