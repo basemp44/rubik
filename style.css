@@ -52,7 +52,7 @@ body {
 	transition: transform 1s;
 }
 
-.layer.hiden {
+.layer.hidden {
 	display: none;
 }
 
