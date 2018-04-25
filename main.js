@@ -11,4 +11,5 @@ window.onload = () => {
 
 	populateLayerX(colors);
 	populateLayerY(colors);
+	populateLayerZ(colors);
 }
