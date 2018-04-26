@@ -1,11 +1,13 @@
-class Rubik {
+import Piece from "./Piece.js";
+
+export default class Rubik {
 	constructor(colors) {
 		this.pieces = Array(3).fill(Array(3).fill(Array(3).fill(new Piece(colors))));
 	}
 
 	rotateFB(xx, wise) {
 		let condition = (x,y,z) => xx == x;
-		let change    = (x,y,z) => wise ? 
+		let change    = (x,y,z) => wise ?
 			this.pieces[x][2-z][y].rotateFB(wise) :
 			this.pieces[x][z][2-y].roteteFB(wise);
 		this.rotate(condition, change);
@@ -20,12 +22,10 @@ class Rubik {
 	}
 
 	rotate(condition, change) {
-		let m = this.pieces;
-		this.pieces = m.map(
-			(ex,x) => ex.map(
-			(ey,y) => ey.map(
-			(ez,z) => condition(x,y,z) ? change(x,y,z) : m[x][y][z]
-		)));
+		this.pieces = this.pieces.map((ex,x) =>
+			ex.map((ey,y) =>
+				ey.map((ez,z) =>
+					condition(x,y,z) ? change(x,y,z) : m[x][y][z])));
 	}
 
 	*iteratorU() {

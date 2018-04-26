@@ -1,4 +1,4 @@
-class Piece {
+export default class Piece {
 	constructor(colors) {
 		this.U = colors.U;
 		this.D = colors.D;
