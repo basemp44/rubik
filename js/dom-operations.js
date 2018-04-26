@@ -1,6 +1,14 @@
 const dom = {
-	getElementsByClass(str) {
+	getById(id) {
+		return document.getElementById(id);
+	},
+
+	getByClass(str) {
 		return Array.from(document.getElementsByClassName(str));
+	},
+
+	append(idParent, child) {
+		dom.getById(idParent).appendChild(child);
 	},
 
 	createTagId(tag, id, children = []) {
@@ -30,3 +38,5 @@ const dom = {
 		return elem;
 	}
 }
+
+export default dom;

@@ -16,4 +16,6 @@ window.onload = () => {
 	let rubik = new Rubik(colors);
 	let rubikView = new RubikViewHtmlCss(rubik);
 	let rubikManager = new RubikManager(rubik, rubikView);
+
+	rubikView.build();
 }

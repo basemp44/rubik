@@ -3,11 +3,11 @@ export default class RubikView {
 		this.rubik = rubik;
 	}
 
-	buildView() {
+	build() {
 		throw new Error("Not implemented!");
 	}
 
-	updateView() {
+	update() {
 		throw new Error("Not implemented!");
 	}
 }
